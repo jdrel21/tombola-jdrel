@@ -13,8 +13,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 👇 FOARTE IMPORTANT
-window.registerUser = function () {
+// 🔥 AICI e cheia
+document.getElementById("registerBtn").addEventListener("click", () => {
   const email = document.getElementById("email").value;
   const pass = document.getElementById("pass").value;
 
@@ -30,4 +30,4 @@ window.registerUser = function () {
     .catch(err => {
       alert(err.message);
     });
-};
+});
