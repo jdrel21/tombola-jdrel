@@ -13,11 +13,21 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-window.registerUser = async (email, password) => {
-  try {
-    await createUserWithEmailAndPassword(auth, email, password);
-    window.location.href = "wheel.html";
-  } catch (err) {
-    alert(err.message);
+// 👇 FOARTE IMPORTANT
+window.registerUser = function () {
+  const email = document.getElementById("email").value;
+  const pass = document.getElementById("pass").value;
+
+  if (!email || !pass) {
+    alert("Completează email și parolă");
+    return;
   }
+
+  createUserWithEmailAndPassword(auth, email, pass)
+    .then(() => {
+      window.location.href = "wheel.html";
+    })
+    .catch(err => {
+      alert(err.message);
+    });
 };
